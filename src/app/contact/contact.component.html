@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<div class="contact-form">
+    <h2>Get in Touch</h2>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <i class="fa fa-user icon"></i>
+            <input type="text" formControlName="name" class="form-control" placeholder="Name" required>
+        </div>
+        <div class="form-group">
+            <i class="fa fa-envelope icon"></i>
+            <input type="email" formControlName="email" class="form-control" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <i class="fa fa-phone icon"></i>
+            <input type="tel" formControlName="phone" class="form-control" placeholder="Phone">
+        </div>
+        <div class="form-group">
+            <textarea formControlName="message" class="form-control" placeholder="Your message..." rows="5" required></textarea>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox" formControlName="sendCopy" id="sendCopy" name="sendCopy">
+            <label for="sendCopy">Send copy to my email</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Email</button>
+    </form>
+</div>

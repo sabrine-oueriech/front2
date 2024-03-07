@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>e-service</title>
+   
+    <link rel="shortcut icon" href="product_img/favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- font awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css"
+        integrity="sha512-SgaqKKxJDQ/tAUAAXzvxZz33rmn7leYDYfBP+YoMRSENhf3zJyx3SBASt/OfeQwBHA1nxMis7mM3EV/oYT6Fdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+ <!-- mon-composant.component.html -->
+
+ <div class="container">
+
+    <header>
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-lg navbar-light nav-yellow border-bottom border-top p-0">
+            <div class="container">
+                <a class="navbar-brand fs-4 fw-bold" href="#">
+                    <img src="assets/logo.jpg" alt="Logo" style="height: 40px;"> <!-- Ajustez le chemin d'accès et la taille comme nécessaire -->
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- Toggle -->
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Nav Items -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+                        <!-- Home Link -->
+                        <li class="nav-item">
+                            <a class="nav-link redHover fw-semibold text-uppercase text-black me-3" href="#">Home</a>
+                        </li>
+                        <!-- Contact Link -->
+                        <li class="nav-item">
+                            <a class="nav-link redHover fw-semibold text-uppercase text-black me-3" routerLink="/contact">Contact</a>
+                          </li>
+                          
+                        <!-- ... -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle redHover fw-semibold text-uppercase text-black me-1"
+                                href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fa fa-user fs-5 me-1" style="color: #202122;"></i>
+                            </a>
+                            <ul class="dropdown-menu" style="left:-50px" aria-labelledby="navbarDropdown">
+                                <li class="nav-item d-flex align-items-center">
+                                    <button type="button" id="signinModal" class="btn btn-primary me-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">Login</button>
+                                    <button type="button"id="signupModal"  class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Register</button>
+                                  </li>
+                            </ul>
+                        </li>
+                        <!-- ... -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="offcanvas offcanvas-end m-5" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">Sign In</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- Utilisez ngSubmit pour la soumission du formulaire et ngModel pour la liaison bidirectionnelle des données -->
+            <form class="signin-form" (ngSubmit)="login()">
+                <div class="form-group mt-3">
+                    <input type="email" class="form-control" [(ngModel)]="loginData.email" name="email" required>
+                    <label class="form-control-placeholder" for="email">Email</label>
+                </div>
+                <div class="form-group mt-4">
+                    <input id="password-field" type="password" class="form-control" [(ngModel)]="loginData.password" name="password" required>
+                    <label class="form-control-placeholder" for="password">Password</label>
+                    <!-- Ici, vous pouvez également gérer l'affichage du mot de passe -->
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="my-4 form-control btn btn-primary rounded submit px-3">Sign In</button>
+                </div>
+                <!-- Les autres éléments du formulaire restent inchangés -->
+            </form>
+            <p class="text-center mt-4">Not a member? <a data-bs-toggle="modal" href="#exampleModal">Sign Up</a></p>
+        </div>
+    </div>
+    
+    
+    <!-- register modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div *ngIf="registrationMessage" class="alert alert-success">
+                    {{ registrationMessage }}
+                </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm" (ngSubmit)="onSubmit()">   
+                        <div class="mb-3">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="formData.firstName" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" [(ngModel)]="formData.lastName" class="form-control" id="lastName" name="lastName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" [(ngModel)]="formData.email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" [(ngModel)]="formData.password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+  
+      
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            // Prevent the default form submission
+            event.preventDefault();
+            
+        
+            console.log("Form submitted!");
+    
+            var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            modal.hide();
+        });
+    </script>
+  
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Carte 1 -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="fas fa-car fa-3x mb-3"></i>
+            <h5 class="card-title">Taxation de Véhicule</h5>
+            <p class="card-text">Description courte sur la taxation des véhicules.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+      <!-- Carte 2 -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="fas fa-file-invoice-dollar fa-3x mb-3"></i>
+            <h5 class="card-title">Tarifs et Nomenclatures</h5>
+            <p class="card-text">Informations sur les tarifs douaniers et classifications.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+      <!-- Carte 3 -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="fas fa-search fa-3x mb-3"></i>
+            <h5 class="card-title">Situation Véhicule</h5>
+            <p class="card-text">Vérifiez l'état actuel de votre véhicule en douane.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+      <!-- Carte 4 -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100 text-center">
+          <div class="card-body">
+            <i class="fas fa-clipboard-list fa-3x mb-3"></i>
+            <h5 class="card-title">Demande d'Autorisation de Circulation</h5>
+            <p class="card-text">Procédez aux démarches pour obtenir l'autorisation de circuler.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  ``
+  
+ </div>
+ <footer class="shadow" style="background-color: royalblue;">
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col">
+                <h5 class="mb-4" style="font-weight:600">E-service</h5>
+
+               
+                <p class="my-3">La douane est chargée de la perception des droits, taxes et impôts dus à l'importation et à l'exportation des marchandises au profit du Budget de l'Etat ainsi que de la perception des taxes parafiscales au profit de la</p>
+                <div class="social-icons mt-4">
+                    <a href="#" class="text-dark me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-dark mx-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-dark"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col">
+                <h5 class="mb-4" style="font-weight:600">Douane</h5>
+                <ul class="list-unstyled">
+                    <li class="my-2"><a class="text-dark" href="/">Resources</a></li>
+                    <li class="my-2"><a class="text-dark" href="/">About Us</a></li>
+                    <li class="my-2"><a class="text-dark" href="/">Contact</a></li>
+                    <li class="my-2"><a class="text-dark" href="/">Blog</a></li>
+                </ul>
+            </div>
+          
+               
+            <div class="col">
+                <h5 class="mb-4" style="font-weight:600">Help</h5>
+                <ul class="list-unstyled">
+                    <li class="my-2"><a class="text-dark" href="/">Support</a></li>
+                    <li class="my-2"><a class="text-dark" href="Sign Up">Sign Up</a></li>
+                    <li class="my-2"><a class="text-dark" href="Sign In">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <small>&copy; Devwares, 2020. All rights reserved.</small>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>
+
