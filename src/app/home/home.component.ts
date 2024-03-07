@@ -1,7 +1,8 @@
+
+import * as bootstrap from 'bootstrap'; 
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../user.service";
-import * as bootstrap from 'bootstrap'; 
-
+import { Router } from '@angular/router'; // Importez le Router
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
     password: ''
   };
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { } // Injectez le Router
 
   ngOnInit(): void {
   }
@@ -45,7 +46,8 @@ export class HomeComponent implements OnInit {
       next: (response) => {
         console.log('Login successful:', response);
         localStorage.setItem('authToken', response.token); // Exemple de gestion de token
-        // Effectuez ici d'autres actions post-connexion, comme la redirection
+        // Redirigez vers le composant 'ChoixComponent' après la connexion réussie
+        this.router.navigate(['/choix']); 
       },
       error: (error) => {
         console.error('Login error:', error);

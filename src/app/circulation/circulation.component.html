@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulaire d'Autorisation de Circulation</title>
+</head>
+<body>
+  <div class="container">
+    <h2>DEMANDE D'AUTORISATION DE CIRCULATION (Rokhsati)</h2>
+    <form>
+      <!-- INFORMATION CONCERNANT LE BENEFICIAIRE -->
+      <fieldset>
+        <legend>Informations concernant le bénéficiaire:</legend>
+        <label for="nom">Nom*:</label>
+        <input type="text" id="nom" name="nom" required>
+        
+        <label for="prenom">Prénom*:</label>
+        <input type="text" id="prenom" name="prenom" required>
+        
+        <label for="nationalite">Nationalité*:</label>
+        <select id="nationalite" name="nationalite">
+          <option value="tunisienne">TUNISIENNE</option>
+          <option value="etrangere">ÉTRANGÈRE</option>
+        </select>
+        
+        <label for="passport">Passeport*:</label>
+        <input type="text" id="passport" name="passport" required>
+        
+        <label for="cin">CIN Nº:</label>
+        <input type="text" id="cin" name="cin">
+        
+        <label for="gouv">Gouv*:</label>
+        <select id="gouv" name="gouv">
+          <option value="tunis">TUNIS</option>
+          <!-- Add other governorates here -->
+        </select>
+        
+        <label for="adresse">Adresse*:</label>
+        <input type="text" id="adresse" name="adresse" required>
+      </fieldset>
+      
+      <!-- INFORMATION CONCERNANT LE VEHICULE -->
+      <fieldset>
+        <legend>Informations concernant le véhicule:</legend>
+        <label for="matricule">Matricule*:</label>
+        <input type="text" id="matricule" name="matricule" required>
+        
+        <label for="energie">Énergie*:</label>
+        <select id="energie" name="energie">
+          <option value="essence">ESSENCE</option>
+          <!-- Add other energy types here -->
+        </select>
+        
+        <label for="marque">Marque*:</label>
+        <select id="marque" name="marque">
+          <option value="alfa_romeo">ALFA ROMEO</option>
+          <!-- Add other car brands here -->
+        </select>
+        
+        <label for="couleur">Couleur*:</label>
+        <select id="couleur" name="couleur">
+          <option value="blanche">BLANCHE</option>
+          <!-- Add other colors here -->
+        </select>
+        
+        <label for="date_mise_en_circulation">Date de première mise en circulation*:</label>
+        <input type="date" id="date_mise_en_circulation" name="date_mise_en_circulation" required>
+        
+        <label for="chassis">N°chassis*:</label>
+        <input type="text" id="chassis" name="chassis" required>
+        
+        <label for="fiscale">Puissance Fiscale:</label>
+        <input type="number" id="fiscale" name="fiscale">
+        
+        <label for="cylindre">Cylindrée:</label>
+        <input type="number" id="cylindre" name="cylindre">
+      </fieldset>
+      
+      <div class="captcha">
+        <!-- Insert reCAPTCHA widget here -->
+      </div>
+      
+      <button type="submit">Envoyer</button>
+      <button type="reset">Réinitialiser</button>
+    </form>
+  </div>
+</body>
+</html>
