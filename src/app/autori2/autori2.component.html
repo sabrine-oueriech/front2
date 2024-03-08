@@ -1,0 +1,251 @@
+<h1>DEMANDE D'AUTORISATION DE CIRCULATION (Rokhsati)</h1>
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" novalidate>
+  <!-- Informations concernant le bénéficiaire -->
+  <div class="information-box" formGroupName="personalInformation">
+    <h3><i class="fas fa-user"></i> Informations concernant le bénéficiaire:</h3>
+    
+    <!-- Name Field -->
+    <div>
+      <label for="name">Nom:</label>
+      <input type="text" id="name" formControlName="name">
+      <span *ngIf="myForm.get('personalInformation.name')?.errors?.['required'] && myForm.get('personalInformation.name')?.touched" class="error-message">
+        Le nom est requis.
+      </span>
+    </div>
+
+    <!-- Prename Field -->
+    <div>
+      <label for="prenom">Prénom:</label>
+      <input type="text" id="prenom" formControlName="prenom">
+      <span *ngIf="myForm.get('personalInformation.prenom')?.errors?.['required'] && myForm.get('personalInformation.prenom')?.touched" class="error-message">
+        Le prénom est requis.
+      </span>
+    </div>
+
+    <!-- Additional fields remain unchanged -->
+
+    <!-- Passport Field -->
+       <!-- Passport Field -->
+       <div>
+        <label for="passport">Passeport:</label>
+        <input type="text" id="passport" formControlName="passport">
+        <span *ngIf="myForm.get('personalInformation.passport')?.errors?.['required'] && myForm.get('personalInformation.passport')?.touched" class="error-message">
+          Le passeport est requis.
+        </span>
+      </div>
+  
+      <!-- CIN Field -->
+      <div>
+        <label for="cin">CIN:</label>
+        <input type="text" id="cin" formControlName="cin">
+        <span *ngIf="myForm.get('personalInformation.cin')?.errors?.['required'] && myForm.get('personalInformation.cin')?.touched" class="error-message">
+          Le CIN est requis.
+        </span>
+      </div>
+  
+      <div>
+        <label for="gov">Gouvernorat:</label>
+        <select id="gov" formControlName="gov" required>
+        <option value="tunis">Tunis</option>
+        <option value="ariana">Ariana</option>
+        <option value="béja">Béja</option>
+        <option value="ben_arous">Ben Arous</option>
+        <option value="bizerte">Bizerte</option>
+        <option value="gabès">Gabès</option>
+        <option value="gafsa">Gafsa</option>
+        <option value="jendouba">Jendouba</option>
+        <option value="kairouan">Kairouan</option>
+        <option value="kasserine">Kasserine</option>
+        <option value="kebili">Kebili</option>
+        <option value="kef">Kef</option>
+        <option value="mahdia">Mahdia</option>
+        <option value="manouba">Manouba</option>
+        <option value="médenine">Médenine</option>
+        <option value="monastir">Monastir</option>
+        <option value="nabeul">Nabeul</option>
+        <option value="sfax">Sfax</option>
+        <option value="sidi_bouzid">Sidi Bouzid</option>
+        <option value="siliana">Siliana</option>
+        <option value="sousse">Sousse</option>
+        <option value="tataouine">Tataouine</option>
+        <option value="tozeur">Tozeur</option>
+        <option value="tunis">Tunis</option>
+        <option value="zaghouan">Zaghouan</option>
+
+      </select>
+    </div>
+
+    <div>
+        <label for="address">Adresse:</label>
+        <input type="text" id="address" formControlName="address">
+        <span *ngIf="myForm.get('personalInformation.address')?.errors?.['required'] && myForm.get('personalInformation.address')?.touched" class="error-message">
+          L'adresse est requise.
+        </span>
+      </div>
+    </div>
+
+  <!-- Informations concernant le véhicule -->
+  <div class="information-box" formGroupName="vehicleInformation">
+    
+    <h3><i class="fas fa-car"></i> Informations concernant le véhicule:</h3>
+    <div>
+        <div>
+            <label for="registration">Matricule:</label>
+            <input type="text" id="registration" formControlName="registration">
+            <span *ngIf="myForm.get('vehicleInformation.registration')?.errors?.['required'] && myForm.get('vehicleInformation.registration')?.touched" class="error-message">
+              Le matricule est requis.
+            </span>
+          </div>
+
+    <div>
+      <label for="chassis">N° Châssis:</label>
+      <input type="text" id="chassis" formControlName="chassis" required>
+      <span *ngIf="myForm.get('vehicleInformation.chassis').errors?.required && myForm.get('vehicleInformation.chassis').touched" class="error-message">
+        Le numéro de châssis est requis.
+      </span>
+    </div>
+
+    <div>
+      <label for="energy">Énergie:</label>
+      <select id="energy" formControlName="energy" required>
+      <option value="autogaz">Autogaz</option>
+      <option value="bioéthanol">Bioéthanol</option>
+      <option value="diesel">Diesel</option>
+      <option value="électricité">Électricité</option>
+      <option value="essence">Essence</option>
+      <option value="gaz naturel">Gaz naturel</option>
+      <option value="hydrogène">Hydrogène</option>
+      <option value="hybride">Hybride</option>
+      <option value="hybride rechargeable">Hybride rechargeable</option>
+      <option value="GPL">GPL</option>
+      <option value="autre">autre</option>
+<!-- Ajoutez d'autres options ici si nécessaire -->
+
+      </select>
+    </div>
+
+    <div>
+      <label for="brand">Marque:</label>
+      <select class="form-control" id="brand" formControlName="brand">
+        <option value="alfa_romeo">ALFA ROMEO</option>
+        <option value="audi">AUDI</option>
+        <option value="bmw">BMW</option>
+        <option value="cadillac">CADILLAC</option>
+        <option value="chevrolet">CHEVROLET</option>
+        <option value="citroen">CITROEN</option>
+        <option value="dacia">DACIA</option>
+        <option value="ferrari">FERRARI</option>
+        <option value="fiat">FIAT</option>
+        <option value="ford">FORD</option>
+        <option value="honda">HONDA</option>
+        <option value="hyundai">HYUNDAI</option>
+        <option value="jaguar">JAGUAR</option>
+        <option value="jeep">JEEP</option>
+        <option value="kia">KIA</option>
+        <option value="lada">LADA</option>
+        <option value="lamborghini">LAMBORGHINI</option>
+        <option value="land_rover">LAND ROVER</option>
+        <option value="lexus">LEXUS</option>
+        <option value="mazda">MAZDA</option>
+        <option value="mercedes_benz">MERCEDES-BENZ</option>
+        <option value="mini">MINI</option>
+        <option value="mitsubishi">MITSUBISHI</option>
+        <option value="nissan">NISSAN</option>
+        <option value="opel">OPEL</option>
+        <option value="peugeot">PEUGEOT</option>
+        <option value="porsche">PORSCHE</option>
+        <option value="renault">RENAULT</option>
+        <option value="seat">SEAT</option>
+        <option value="skoda">SKODA</option>
+        <option value="smart">SMART</option>
+        <option value="subaru">SUBARU</option>
+        <option value="suzuki">SUZUKI</option>
+        <option value="toyota">TOYOTA</option>
+        <option value="volkswagen">VOLKSWAGEN</option>
+        <option value="volvo">VOLVO</option>
+        <option value="autre">autre</option>
+      </select>
+      
+        
+      <span *ngIf="myForm.get('vehicleInformation.brand').errors?.required && myForm.get('vehicleInformation.brand').touched" class="error-message">
+        La marque est requise.
+      </span>
+    </div>
+
+    <div>
+      <label for="model">Modèle:</label>
+      <input type="text" id="model" formControlName="model" required>
+      <span *ngIf="myForm.get('vehicleInformation.model').errors?.required && myForm.get('vehicleInformation.model').touched" class="error-message">
+        Le modèle est requis.
+      </span>
+    </div>
+
+    <div>
+      <label for="color">Couleur:</label>
+      
+
+<select class="form-control" id="color" formControlName="color">
+  <option value="aigue-marine">Aigue-marine</option>
+  <option value="argent">Argent</option>
+  <option value="azur">Azur</option>
+  <option value="beige">Beige</option>
+  <option value="blanc">Blanc</option>
+  <option value="bleu">Bleu</option>
+  <option value="caramel">Caramel</option>
+  <option value="cerise">Cerise</option>
+  <option value="citron vert">Citron vert</option>
+  <option value="corail">Corail</option>
+  <option value="crème">Crème</option>
+  <option value="cuivre">Cuivre</option>
+  <option value="cyan">Cyan</option>
+  <option value="fuchsia">Fuchsia</option>
+  <option value="gris">Gris</option>
+  <option value="indigo">Indigo</option>
+  <option value="ivoire">Ivoire</option>
+  <option value="jade">Jade</option>
+  <option value="kaki">Kaki</option>
+  <option value="lilas">Lilas</option>
+  <option value="magenta">Magenta</option>
+  <option value="marron">Marron</option>
+  <option value="mauve">Mauve</option>
+  <option value="noir">Noir</option>
+  <option value="olive">Olive</option>
+  <option value="orange">Orange</option>
+  <option value="pourpre">Pourpre</option>
+  <option value="rose">Rose</option>
+  <option value="rouge">Rouge</option>
+  <option value="saumon">Saumon</option>
+  <option value="sable">Sable</option>
+  <option value="saphir">Saphir</option>
+  <option value="tangerine">Tangerine</option>
+  <option value="turquoise">Turquoise</option>
+  <option value="vanille">Vanille</option>
+  <option value="violet">Violet</option>
+  <option value="zinzolin">Zinzolin</option>
+  <option value="autre">autre</option>
+
+      </select>
+      <span *ngIf="myForm.get('vehicleInformation.color').errors?.required && myForm.get('vehicleInformation.color').touched" class="error-message">
+        La couleur est requise.
+      </span>
+    </div>
+
+    <div>
+      <label for="firstCirculationDate">Date de première mise en circulation:</label>
+      <input type="date" id="firstCirculationDate" formControlName="firstCirculationDate" required>
+      <span *ngIf="myForm.get('vehicleInformation.firstCirculationDate').errors?.required && myForm.get('vehicleInformation.firstCirculationDate').touched" class="error-message">
+        La date de première mise en circulation est requise.
+      </span>
+    </div>
+  </div>
+
+  <!-- Google reCAPTCHA -->
+  <div class="g-recaptcha" [attr.data-sitekey]="siteKey"></div>
+
+  <!-- Form actions -->
+  <div class="form-actions">
+    <button type="submit" [disabled]="!myForm.valid">Envoyer</button>
+    <button type="button" (click)="myForm.reset()">Réinitialiser</button>
+  </div>
+</form>

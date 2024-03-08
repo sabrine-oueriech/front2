@@ -1,0 +1,15 @@
+.error-message {
+    color: red;
+    margin-top: 5px;
+  }
+  
+  .container {
+    max-width: 400px;
+    padding: 20px;
+    margin: auto;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
