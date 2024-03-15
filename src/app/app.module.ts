@@ -7,13 +7,21 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactComponent } from './contact/contact.component';
 import { CirculationComponent } from './circulation/circulation.component';
-import { ChoixComponent } from './choix/choix.component';
+
 import { FormComponent } from './form/form.component';
-import { Autori2Component } from './autori2/autori2.component';
+import { RouterModule } from '@angular/router';
+
 import { DisplayDataComponent } from './display-data/display-data.component';
-import { LoginComponent } from './login/login.component';
+
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
+
 import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CompteComponent } from './compte/compte.component';
+import { ServicesComponent } from './services/services.component';
+import { EntrepriseComponent } from './entreprise/entreprise.component';
+import { ParticulierComponent } from './particulier/particulier.component';
+
 
 @NgModule({
 
@@ -22,11 +30,15 @@ import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     HomeComponent,
     ContactComponent,
     CirculationComponent,
-    ChoixComponent,
+   
     FormComponent,
-    Autori2Component,
+ 
     DisplayDataComponent,
-    LoginComponent,
+       CompteComponent,
+       ServicesComponent,
+       EntrepriseComponent,
+       ParticulierComponent,
+  
   ],
   imports: [
     BrowserModule,

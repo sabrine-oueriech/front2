@@ -16,25 +16,29 @@ export class ContactComponent {
     private contactService: ContactService
   ) {
     this.contactForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', Validators.required], // Simplified form control initialization
       email: ['', [Validators.required, Validators.email]],
-      phone: [''],
+      phone: [''], // No validators required as per your setup
       message: ['', Validators.required],
-      sendCopy: [false]
+      sendCopy: [false] // Default value set to false
     });
   }
 
   onSubmit(): void {
-    this.contactService.createContact(this.contactForm.value).subscribe({
-      next: (response) => {
-        console.log('Success:', response);
-        this.registrationMessage = 'Contact enregistré avec succès !';
-        this.resetFormData();
-      },
-      error: (error) => {
-        console.error('Error:', error);
-      }
-    });
+    if (this.contactForm.valid) {
+      this.contactService.createContact(this.contactForm.value).subscribe({
+        next: (response) => {
+          console.log('Success:', response);
+          this.registrationMessage = 'Contact enregistré avec succès !';
+          this.resetFormData();
+        },
+        error: (error) => {
+          console.error('Error:', error);
+        }
+      });
+    } else {
+      console.error('Form is not valid');
+    }
   }
 
   private resetFormData(): void {

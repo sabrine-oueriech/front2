@@ -1,0 +1,305 @@
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+
+<div class="container-fluid bg-primary px-5 d-none d-lg-block">
+    <div class="row gx-0">
+        <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
+            <div class="d-inline-flex align-items-center" style="height: 45px;">
+               
+                    <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.facebook.com/douane.tunisie/"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://twitter.com/i/flow/login?redirect_after_login=%2FDouaneTunisie"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.youtube.com/channel/UCnaeFNIErTt_coPSykdnCWg/featured"><i class="fab fa-youtube"></i></a>
+
+                </div>
+        </div>
+        <div class="col-lg-4 text-center text-lg-end">
+            <div class="d-inline-flex align-items-center" style="height: 45px;">
+               <!-- Lien Register modifié pour ouvrir la modale -->
+<a href="#" class="me-3 text-light" data-bs-toggle="modal" data-bs-target="#registerModal"><small><i class="fa fa-user me-2"></i>Register</small></a>
+
+               
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i class="fa fa-home me-2"></i> My Dashboard</small></a>
+                    <div class="dropdown-menu rounded">
+                        <a href="#" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Inbox</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Notifications</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
+<!-- Fenêtre modale d'inscription améliorée -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Inscription</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" id="firstName" placeholder="Prénom">
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-user-tag"></i></span>
+                <input type="text" class="form-control" id="lastName" placeholder="Nom">
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                <input type="email" class="form-control" id="email" placeholder="Email">
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" id="password" placeholder="Mot de passe">
+              </div>
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+        <!-- Navbar & Hero Start -->
+        <div class="container-fluid position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Douane</h1>
+                    <img src="assets/img/logo.jpg" alt="Logo"> 
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        
+                        
+                        <!-- ... -->
+                        
+                        <a class="nav-item nav-link"[routerLink]="['/services']">Services</a>
+                        <a href="packages.html" class="nav-item nav-link">compte</a>
+                        <a href="blog.html" class="nav-item nav-link">avis</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Utilisateur </a>
+                            <div class="dropdown-menu m-0">
+                                <!-- Utilisez routerLink au lieu de href pour la navigation -->
+                               <a [routerLink]="['/entreprise']" class="dropdown-item">Entreprise</a>
+                               <!-- Utilisez routerLink au lieu de href pour la navigation -->
+                               <a [routerLink]="['/particulier']" class="dropdown-item">Particulier</a>
+                            </div>
+                           
+                            
+                        </div>
+                       <!-- Modifiez le lien Contact pour utiliser routerLink -->
+                           <a  class="nav-item nav-link" [routerLink]="['/contact']">Contact</a>
+
+                    </div>
+                    <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a>
+                </div>
+            </nav>
+        </div>
+
+<!-- Header Start -->
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4">Les douanes sur votre service</h3>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+           
+        </ol>    
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Travel Guide Start -->
+<div class="container-fluid guide py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">our services</h5>
+            <h1 class="mb-0">Particulier</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="guide-item">
+                    <div class="guide-img">
+                        <div class="guide-img-efects">
+                            <img src="assets/img/a1.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                        </div>
+                        <div class="guide-icon rounded-pill p-2">
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.facebook.com/douane.tunisie/"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://twitter.com/i/flow/login?redirect_after_login=%2FDouaneTunisie"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.youtube.com/channel/UCnaeFNIErTt_coPSykdnCWg/featured"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="guide-title text-center rounded-bottom p-4">
+                        <div class="guide-title-inner">
+                            <h4 class="mt-3" data-bs-toggle="modal" data-bs-target="#loginModal">permis de circulation d'un véhicule immatriculé à l'étranger</h4>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="guide-item">
+                    <div class="guide-img">
+                        <div class="guide-img-efects">
+                            <img src="assets/img/a2.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                        </div>
+                        <div class="guide-icon rounded-pill p-2">
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.facebook.com/douane.tunisie/"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://twitter.com/i/flow/login?redirect_after_login=%2FDouaneTunisie"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.youtube.com/channel/UCnaeFNIErTt_coPSykdnCWg/featured"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="guide-title text-center rounded-bottom p-4">
+                        <div class="guide-title-inner">
+                            <h4 class="mt-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Permis de circulation d'un véhicule immatriculé dans la série minéralogique tunisienne "RS" (Permis bleu)
+                            </h4>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="guide-item">
+                    <div class="guide-img">
+                        <div class="guide-img-efects">
+                            <img src="assets/img/a3.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                        </div>
+                        <div class="guide-icon rounded-pill p-2">
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.facebook.com/douane.tunisie/"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://twitter.com/i/flow/login?redirect_after_login=%2FDouaneTunisie"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.youtube.com/channel/UCnaeFNIErTt_coPSykdnCWg/featured"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="guide-title text-center rounded-bottom p-4">
+                        <div class="guide-title-inner">
+                            <h4 class="mt-3" data-bs-toggle="modal" data-bs-target="#loginModal">Autorisation de conduire un véhicule immatriculé dans la serie minéralogique tunisienne "RS:</h4>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="guide-item">
+                    <div class="guide-img">
+                        <div class="guide-img-efects">
+                            <img src="assets/img/aa4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                        </div>
+                        <div class="guide-icon rounded-pill p-2">
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.facebook.com/douane.tunisie/"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://twitter.com/i/flow/login?redirect_after_login=%2FDouaneTunisie"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.youtube.com/channel/UCnaeFNIErTt_coPSykdnCWg/featured"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="guide-title text-center rounded-bottom p-4">
+                        <div class="guide-title-inner">
+                            <h4 class="mt-3" data-bs-toggle="modal" data-bs-target="#loginModal">Autorisation pour la réexportation d'un véhicule bénéficiant du régime FCR</h4>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Travel Guide End -->
+
+<!-- Subscribe Start -->
+
+<!-- Subscribe End -->
+
+<!-- Footer Start -->
+<div class="container-fluid footer py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">Bureau des relations avec le citoyen</h4>
+                    <p><i class="fas fa-phone me-2"></i> 70279770</p>
+                    <p><i class="fas fa-fax me-2"></i> 71751002</p>
+                    <p><i class="fas fa-envelope me-2"></i><!-- Correction: Ajout de ; après &#64 -->
+                        <p><i class="fas fa-envelope me-2"></i> brc&#64;douane.gov.tn</p>
+                        
+                   <p> <i class="fas fa-map-marker-alt me-2"></i> Rue Hédi Karray – Station du métro N°2 Cité des Sciences – Centre Urbain Nord – 1082 TunisTunis</p>
+                    <p><i class="fas fa-user me-2"></i> Colonel-major des douanes</p>
+                </div>
+            </div>
+            <!-- Répétez le même schéma pour les autres sections avec les données fournies -->
+        </div>
+    </div>
+</div>
+
+<!-- Footer End -->
+
+<!-- Copyright Start -->
+<div class="container-fluid copyright text-body py-4">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-6 text-center text-md-end mb-md-0">
+                <i class="fas fa-copyright me-2"></i><a class="text-white" href="#">Your Site Name</a>, All right reserved.
+            </div>
+            <div class="col-md-6 text-center text-md-start">
+                <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                Designed By <a class="text-white" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- Modal Login Form -->
+<!-- Modal Login Form -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- Icône de personne ajoutée dans l'entête -->
+                <h5 class="modal-title" id="loginModalLabel"><i class="fas fa-user-circle me-2"></i>Connexion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form (submit)="onlogin()">
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input type="email"[(ngModel)]="email"  class="form-control" id="loginEmail" placeholder="Entrez votre email"required>
+                    </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password"[(ngModel)]="password" class="form-control" id="loginPassword" placeholder="Entrez votre mot de passe"required>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

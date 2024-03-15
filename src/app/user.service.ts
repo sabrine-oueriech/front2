@@ -11,10 +11,12 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   registerUser(userData: any): Observable<any> {
+    // Corrigé: Utilisation des guillemets inversés pour l'interpolation
     return this.http.post(`${this.baseUrl}/register`, userData);
   }
 
   loginUser(loginData: any): Observable<any> {
+    // Corrigé: Utilisation des guillemets inversés pour l'interpolation
     return this.http.post(`${this.baseUrl}/login`, loginData);
   }
 }
