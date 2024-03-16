@@ -21,7 +21,8 @@
       <p>4) Marque: {{ formData?.vehicleInformation?.brand }}</p>
       <p>5) Modèle: {{ formData?.vehicleInformation?.model }}</p>
       <p>6) Couleur: {{ formData?.vehicleInformation?.color }}</p>
-      <p>7) Date de première mise en circulation: {{ formData?.vehicleInformation?.firstCirculationDate | date:'mediumDate' }}</p>
+      <p>7) Date de première mise en circulation: {{ formData?.vehicleInformation?.firstCirculationDate | date: 'dd/MM/yyyy'  }}</p>
+     <!-- <p>7) Date de première mise en circulation: {{ formData?.vehicleInformation?.firstCirculationDate | date:'mediumDate' }}</p>-->
       <!-- Ajouter ici les autres champs concernant le véhicule si nécessaire -->
     </div>
   

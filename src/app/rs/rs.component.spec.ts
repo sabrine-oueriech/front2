@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CirculationComponent } from './circulation.component';
+import { RsComponent } from './rs.component';
 
-describe('CirculationComponent', () => {
-  let component: CirculationComponent;
-  let fixture: ComponentFixture<CirculationComponent>;
+describe('RsComponent', () => {
+  let component: RsComponent;
+  let fixture: ComponentFixture<RsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CirculationComponent]
+      declarations: [RsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CirculationComponent);
+    fixture = TestBed.createComponent(RsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

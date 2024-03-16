@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactComponent } from './contact/contact.component';
-import { CirculationComponent } from './circulation/circulation.component';
+
 
 import { FormComponent } from './form/form.component';
 import { RouterModule } from '@angular/router';
@@ -21,6 +21,10 @@ import { CompteComponent } from './compte/compte.component';
 import { ServicesComponent } from './services/services.component';
 import { EntrepriseComponent } from './entreprise/entreprise.component';
 import { ParticulierComponent } from './particulier/particulier.component';
+import { TestComponent } from './test/test.component';
+import { Autorisation1Component } from './autorisation1/autorisation1.component';
+import { RsComponent } from './rs/rs.component';
+
 
 
 @NgModule({
@@ -29,8 +33,8 @@ import { ParticulierComponent } from './particulier/particulier.component';
     AppComponent,
     HomeComponent,
     ContactComponent,
-    CirculationComponent,
-   
+    
+    Autorisation1Component,
     FormComponent,
  
     DisplayDataComponent,
@@ -38,6 +42,10 @@ import { ParticulierComponent } from './particulier/particulier.component';
        ServicesComponent,
        EntrepriseComponent,
        ParticulierComponent,
+       TestComponent,
+       Autorisation1Component,
+       RsComponent,
+     
   
   ],
   imports: [
@@ -47,7 +55,8 @@ import { ParticulierComponent } from './particulier/particulier.component';
     FormsModule,
     ReactiveFormsModule ,
     ZXingScannerModule,
-    
+    RouterModule,
+    ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],

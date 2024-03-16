@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Autori2Component } from './autori2.component';
+import { Autorisation1Component } from './autorisation1.component';
 
-describe('Autori2Component', () => {
-  let component: Autori2Component;
-  let fixture: ComponentFixture<Autori2Component>;
+describe('Autorisation1Component', () => {
+  let component: Autorisation1Component;
+  let fixture: ComponentFixture<Autorisation1Component>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [Autori2Component]
+      declarations: [Autorisation1Component]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(Autori2Component);
+    fixture = TestBed.createComponent(Autorisation1Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

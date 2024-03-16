@@ -1,0 +1,57 @@
+body {
+    background-color: #f4f4f4; /* Couleur de fond de la page */
+    font-family: Arial, sans-serif;
+  }
+  
+  .form-container {
+    background-color: #ffffff; /* Couleur de fond du formulaire */
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre du formulaire */
+    border-radius: 8px; /* Bord arrondi du formulaire */
+  }
+  
+  form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 10px;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input[type="text"],
+  .input-group input[type="email"],
+  .input-group input[type="tel"],
+  .input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc; /* Bordure des champs de saisie */
+    border-radius: 4px; /* Bord arrondi des champs de saisie */
+  }
+  
+  .input-group textarea {
+    height: 100px; /* Hauteur du textarea */
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0056b3; /* Couleur de fond du bouton */
+    color: white;
+    border: none;
+    border-radius: 4px; /* Bord arrondi du bouton */
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #003d82; /* Couleur de fond du bouton au survol */
+  }
+  

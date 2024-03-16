@@ -1,30 +1,31 @@
-// entreprise.component.ts
+
 import { Component } from '@angular/core';
-import { UserService } from '../user.service';
+import { UserService } from '../user.service'; // Assurez-vous que le chemin d'import est correct
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-entreprise',
   templateUrl: './entreprise.component.html',
-  styleUrls: ['./entreprise.component.css'] // Assurez-vous que le chemin est correct
+  styleUrls: ['./entreprise.component.css']
 })
 export class EntrepriseComponent {
-  // Définissez les propriétés pour le binding avec ngModel
   email: string = '';
   password: string = '';
 
   constructor(private userService: UserService, private router: Router) {}
 
+  // Méthode pour gérer la soumission du formulaire de connexion
   onLogin() {
-    // Utilisez les propriétés email et password directement sans les passer en tant qu'arguments
     this.userService.loginUser({ email: this.email, password: this.password }).subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        // Redirigez ici selon la logique de votre application
-        this.router.navigate(['/cheminAprèsConnexion']); // Adaptez selon votre besoin
+        // Vous pouvez ici enregistrer le jeton JWT retourné par votre serveur si nécessaire
+        // Puis redirigez l'utilisateur vers une page après connexion
+        this.router.navigate(['/chemin-apres-connexion']);
       },
       error: (error) => {
         console.error('Login error', error);
+        // Gérez les erreurs de connexion ici, par exemple en affichant un message
       }
     });
   }

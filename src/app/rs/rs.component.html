@@ -1,0 +1,72 @@
+
+
+<h1 class="mb-4 text-center">DEMANDE D'AUTORISATION DE CIRCULATION (Rokhsati)</h1>
+<form [formGroup]="rsForm" (ngSubmit)="onSubmit()" class="container mt-5">
+    <!-- Groupe 3: Parties -->
+    <div class="form-group">
+        <label for="designationDemandeur">Désignation du Demandeur/Titulaire:</label>
+        <input id="designationDemandeur" formControlName="designationDemandeur" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="codeDemandeur">Code du demandeur/titulaire:</label>
+        <input id="codeDemandeur" formControlName="codeDemandeur" type="text" class="form-control">
+    </div>
+    
+    <div formGroupName="parties" class="mb-3">
+        <label for="legalRepresentative">Représentant légal</label>
+        <div class="form-check">
+            <input type="radio" formControlName="applicantType" value="individual" id="individual" class="form-check-input">
+            <label for="individual" class="form-check-label">Personne physique</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" formControlName="applicantType" value="company" id="company" class="form-check-input">
+            <label for="company" class="form-check-label">Société étrangère</label>
+        </div>
+        <input formControlName="legalRepresentativeId" type="text" id="legalRepresentative" class="form-control" [placeholder]="getPlaceholder()">
+    </div>
+    
+    <!-- Groupe 4 à 9 -->
+    <div class="form-group">
+        <label for="dateExpiration">Date d'expiration de la décision:</label>
+        <input id="dateExpiration" formControlName="dateExpiration" type="date" class="form-control">
+    </div>
+    
+    <div class="form-group">
+        <label for="interdictionsRestrictions">Interdictions et restrictions:</label>
+        <input id="interdictionsRestrictions" formControlName="interdictionsRestrictions" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="remarquesGenerales">Remarques générales:</label>
+        <textarea id="remarquesGenerales" formControlName="remarquesGenerales" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="informationsComplementaires">Informations Complémentaires:</label>
+        <textarea id="informationsComplementaires" formControlName="informationsComplementaires" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="paysOrigineProvenance">Pays Origine/provenance:</label>
+        <select id="paysOrigineProvenance" formControlName="paysOrigineProvenance" class="form-control">
+            <!-- Les options -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="nationalite">Nationalité:</label>
+        <select id="nationalite" formControlName="nationalite" class="form-control">
+            <!-- Les options -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="declarationPrecedente">Déclaration Précedente:</label>
+        <input id="declarationPrecedente" formControlName="declarationPrecedente" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="motif">Motif:</label>
+        <input id="motif" formControlName="motif" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="numeroDiptyque">Numéro Diptyque:</label>
+        <input id="numeroDiptyque" formControlName="numeroDiptyque" type="text" class="form-control">
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Soumettre</button>
+</form>
