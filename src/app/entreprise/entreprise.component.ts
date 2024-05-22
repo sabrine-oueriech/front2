@@ -1,7 +1,7 @@
-
 import { Component } from '@angular/core';
-import { UserService } from '../user.service'; // Assurez-vous que le chemin d'import est correct
+ // Assurez-vous que le chemin d'import est correct
 import { Router } from '@angular/router';
+import { AuthService } from '../service/auth/auth.service';
 
 @Component({
   selector: 'app-entreprise',
@@ -12,21 +12,23 @@ export class EntrepriseComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  // Méthode pour gérer la soumission du formulaire de connexion
-  onLogin() {
-    this.userService.loginUser({ email: this.email, password: this.password }).subscribe({
-      next: (response) => {
-        console.log('Login successful', response);
-        // Vous pouvez ici enregistrer le jeton JWT retourné par votre serveur si nécessaire
-        // Puis redirigez l'utilisateur vers une page après connexion
-        this.router.navigate(['/chemin-apres-connexion']);
-      },
-      error: (error) => {
-        console.error('Login error', error);
-        // Gérez les erreurs de connexion ici, par exemple en affichant un message
-      }
-    });
+  
+
+  navigateToAutorisation1() {
+    this.router.navigate(['/autorisation1']);
+  }
+
+  navigateToRS() {
+    this.router.navigate(['/autorisation2']);
+  }
+
+  navigateToFCR() {
+    this.router.navigate(['/autorisation4']);
+  }
+
+  navigateToRSS() {
+    this.router.navigate(['/autorisation3']);
   }
 }

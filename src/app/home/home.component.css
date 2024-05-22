@@ -1,18 +1,10 @@
-/*** Spinner Start ***/
-#spinner {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity .5s ease-out, visibility 0s linear .5s;
-    z-index: 99999;
-}
 
-#spinner.show {
-    transition: opacity .5s ease-out, visibility 0s linear 0s;
-    visibility: visible;
-    opacity: 1;
-}
-/*** Spinner End ***/
 
+
+::ng-deep .modal-backdrop.show {
+    opacity: 0 !important;
+    /* background: transparent !important; */
+  }
 .back-to-top {
     position: fixed;
     right: 30px;
@@ -126,7 +118,8 @@
     font-family: 'Roboto', sans-serif;
     position: relative;
     padding: 35px 15px;
-    color: var(--bs-white) !important;
+    color: black !important; 
+    
     font-size: 17px;
     font-weight: 400;
     outline: none;
@@ -173,7 +166,7 @@
 
 /*** Footer Start ***/
 .footer {
-    background: var(--bs-dark);
+   background: var(--bs-dark);
 }
 
 .footer .footer-item a {
@@ -185,5 +178,28 @@
 .footer .footer-item a:hover {
     letter-spacing: 2px;
     color: var(--bs-primary);
+
 }
+
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .rounded {
+    border-radius: 0.25rem; /* You can adjust the radius to the desired value */
+  }
+  
+  .w-100 {
+    width: 100% !important; /* The !important directive ensures that this width overrides other width properties */
+  }
+  
 /*** Footer End ***/
+/* logout */
+.logout{
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 300;
+}

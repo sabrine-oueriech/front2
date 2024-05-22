@@ -1,57 +1,55 @@
-body {
-    background-color: #f4f4f4; /* Couleur de fond de la page */
-    font-family: Arial, sans-serif;
+.text-danger {
+    color: #dc3545; /* Rouge d'erreur Bootstrap par défaut */
+    margin-top: 0.25rem;
+    font-size: 0.875em;
   }
-  
-  .form-container {
-    background-color: #ffffff; /* Couleur de fond du formulaire */
-    width: 80%;
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre du formulaire */
-    border-radius: 8px; /* Bord arrondi du formulaire */
+  .title-animation {
+    animation: fadeInDown 1s ease-in-out;
   }
-  
-  form h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .input-group {
-    margin-bottom: 10px;
-  }
-  
-  .input-group label {
+  .header-image {
+    width: 100%;
+    height: auto;
     display: block;
-    margin-bottom: 5px;
+}
+  @keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px; /* Espacement entre les lignes */
   }
   
-  .input-group input[type="text"],
-  .input-group input[type="email"],
-  .input-group input[type="tel"],
-  .input-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc; /* Bordure des champs de saisie */
-    border-radius: 4px; /* Bord arrondi des champs de saisie */
+  .form-column {
+    flex: 1;
+    padding: 0 15px; /* Espacement entre les colonnes */
   }
-  
-  .input-group textarea {
-    height: 100px; /* Hauteur du textarea */
+  input[type="file"]:hover {
+    background-color: #0f22ec; /* Change la couleur de fond lors du survol pour un effet interactif */
   }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #0056b3; /* Couleur de fond du bouton */
-    color: white;
-    border: none;
-    border-radius: 4px; /* Bord arrondi du bouton */
-    cursor: pointer;
+  input[type="file"] {
+    color: rgb(17, 17, 240); /* Change la couleur du texte à bleu */
+    border: 2px solid rgb(235, 235, 239); /* Ajoute une bordure bleue */
+    background-color: #ebeaf0; /* Met un fond légèrement bleuté pour un effet plus doux */
+    padding: 5px; /* Ajoute un peu de padding pour mieux visualiser le champ */
+    border-radius: 5px; /* Arrondit les bords pour un style plus doux */
   }
+  @media (min-width: 992px) {
+    .align-lg-start {
+      align-items: start !important;
+      justify-content: flex-start !important;
+    }
   
-  button:hover {
-    background-color: #003d82; /* Couleur de fond du bouton au survol */
+    .align-lg-end {
+      align-items: end !important;
+      justify-content: flex-end !important;
+    }
   }
   

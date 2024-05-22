@@ -1,47 +1,47 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ContactService } from '../contact.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ContService } from '../service/contact/cont.service';  // Importez votre service ici
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { ContactDto } from '../models/contact-dto';
+import { TokenStorageService } from '../service/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  templateUrl: './contact.component.html'
 })
 export class ContactComponent {
-  contactForm: FormGroup;
-  registrationMessage: string = '';
+ 
+  contact: ContactDto = new ContactDto
+    
+  subject: string = '';
+  message: string = ''; 
+    
+ 
+  
+    constructor(private contactService: ContService,private toastr :ToastrService,private router:Router,
+      public tokenService : TokenStorageService) {}
+  
+    sendContactMessage(): void {
+      if (this.contact.subject && this.contact.message) {
 
-  constructor(
-    private fb: FormBuilder,
-    private contactService: ContactService
-  ) {
-    this.contactForm = this.fb.group({
-      name: ['', Validators.required], // Simplified form control initialization
-      email: ['', [Validators.required, Validators.email]],
-      phone: [''], // No validators required as per your setup
-      message: ['', Validators.required],
-      sendCopy: [false] // Default value set to false
-    });
-  }
-
-  onSubmit(): void {
-    if (this.contactForm.valid) {
-      this.contactService.createContact(this.contactForm.value).subscribe({
-        next: (response) => {
-          console.log('Success:', response);
-          this.registrationMessage = 'Contact enregistré avec succès !';
-          this.resetFormData();
-        },
-        error: (error) => {
-          console.error('Error:', error);
-        }
-      });
-    } else {
-      console.error('Form is not valid');
+        this.contactService.sendMessage(this.contact).subscribe({
+          next: (response) => {
+            this.toastr.success('Utilisateur enregistré avec succès ! Vérifiez votre e-mail pour activer votre compte.');
+          },
+          error: (error) => {
+            this.toastr.error('Erreur lors de l\'enregistrement.', error);
+          }
+        });
+      }
     }
-  }
-
-  private resetFormData(): void {
-    this.contactForm.reset();
-  }
+    goToCompte() :void{
+      this.router.navigateByUrl("/compte")
+    }
+    logout() :void {
+      this.tokenService.signOut();
+      this.router.navigateByUrl("/home");
+    }
 }

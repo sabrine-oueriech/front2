@@ -1,8 +1,12 @@
-import * as bootstrap from 'bootstrap';
-import * as QRCode from 'qrcode';
-import { Component, OnInit } from '@angular/core';
-import { UserService } from "../user.service";
-import { Router } from '@angular/router'; // Importez le Router
+import {  Component,    OnInit,   } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { AuthService } from '../service/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from '../service/token-storage.service';
+import { AuthLoginInfo } from '../models/authLoginInfo';
+import { JwtResponse } from '../models/jwt-response';
+import { SignupRequest } from '../models/signupRequest';
 
 @Component({
   selector: 'app-home',
@@ -10,89 +14,117 @@ import { Router } from '@angular/router'; // Importez le Router
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  formData = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  };
-  qrCodeUrl!: string; // Ajoutez un point d'exclamation pour indiquer que qrCodeUrl sera initialisé plus tard
+  userrequest: SignupRequest ;
+  registerForm !: FormGroup;
+
+  private loginInfo?: AuthLoginInfo;
+
   registrationMessage: string = '';
+  
+  formLogin = new FormGroup ({
+    email: new FormControl(),
+    password: new FormControl(),
+  })
 
-  loginData = {
-    email: '',
-    password: ''
-  };
-
-  constructor(private userService: UserService, private router: Router) { } // Injectez le Router
+  constructor(
+    public authService: AuthService,
+    public tokenStorage: TokenStorageService,
+    private toastr: ToastrService,
+    private router: Router,
+    
+    private fb: FormBuilder  // FormBuilder pour construire le formulaire
+  ) {}
 
   ngOnInit(): void {
-    this.generateQRCode(); // Appel à la méthode de génération du QR Code au chargement du composant
+   
+    this.registerForm = this.fb.group({
+      firstname : ['',Validators.required],
+      lastname : ['',Validators.required],
+      email : ['',Validators.email],
+      password :['',Validators.required]
+});  
   }
+  
 
-  async onSubmit(): Promise<void> {
-    try {
-      const response = await this.userService.registerUser(this.formData).toPromise();
-      console.log('Success:', response);
-      this.registrationMessage = 'Inscription réussie !';
-      this.resetFormData();
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
 
-  async login(): Promise<void> {
-    try {
-      const response = await this.userService.loginUser(this.loginData).toPromise();
-      console.log('Login successful:', response);
-      localStorage.setItem('authToken', response.token); // Exemple de gestion de token
-      // Redirigez vers le composant 'ChoixComponent' après la connexion réussie
-      this.router.navigate(['/choix']);
-    } catch (error) {
-      console.error('Login error:', error);
-    }
-  }
 
-  openLoginModal(): void {
-    this.toggleModal('offcanvasRight', true);
-  }
+  register(): void {
+    const newUser : SignupRequest = this.registerForm.value;
+   
+    if (newUser) {
 
-  openRegisterModal(): void {
-    this.toggleModal('exampleModal', false);
-  }
-
-  private resetFormData(): void {
-    this.formData = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: ''
-    };
-  }
-
-  private toggleModal(elementId: string, isOffcanvas: boolean): void {
-    const element = document.getElementById(elementId);
-    if (element) {
-      if (isOffcanvas) {
-        const modal = new bootstrap.Offcanvas(element);
-        modal.show();
-      } else {
-        const modal = new bootstrap.Modal(element);
-        modal.show();
-      }
+      this.authService.register(newUser).subscribe({
+        next: (response) => {
+          this.toastr.success('Utilisateur enregistré avec succès !');
+          
+          
+        },
+        error: (error) => {
+          this.toastr.error('Erreur lors de l\'enregistrement.', error);
+        }
+      });
     } else {
-      console.error(`L'élément avec l'ID '${elementId}' n'a pas été trouvé.`);
+      this.toastr.error('Veuillez remplir tous les champs correctement.');
     }
   }
 
-  private async generateQRCode(): Promise<void> {
-    const userId = 'uniqueUserId'; // Cet identifiant doit être obtenu après l'enregistrement de l'utilisateur
-    try {
-      this.qrCodeUrl = await QRCode.toDataURL(userId);
-      this.registrationMessage = 'Inscription réussie !'; // Message à afficher après la génération du QR Code
-    } catch (error) {
-      console.error('Erreur lors de la génération du code QR :', error);
-      this.registrationMessage = 'Échec de la génération du code QR.';
+
+  get f() { return this.formLogin.controls; }
+  login(): void {
+    if (this.formLogin.valid) {  
+      this.loginInfo = new AuthLoginInfo(
+        this.formLogin.get('email')?.value,
+        this.formLogin.get('password')?.value
+      );
+ console.log( 'errur',this.formLogin)
+      this.authService.attemptAuth(this.loginInfo).subscribe(
+        (data:JwtResponse )=> {
+          if (data.token !== undefined && data.roles !== undefined) {
+           
+            this.tokenStorage.saveToken(data.token);
+            this.tokenStorage.saveAuthorities(data.roles);
+           
+            console.log ( "erreur",this.loginInfo)
+            
+            this.redirectUser(data.roles)
+           // window.location.reload();
+            this.toastr.success('Connexion réussie !');
+          } else {
+            this.toastr.error('Erreur lors de la connexion.');
+          }
+        },
+        error => {
+          console.error('Erreur lors de la connexion', error);
+          this.toastr.error('Échec de la connexion.');
+        }
+      );
+    }
+
+  }
+  redirectUser(roles:String[]){
+    if (roles.includes("ROLE_ADMIN")) {
+      this.router.navigateByUrl('/admin');
+    } else if (roles.includes("ROLE_INSPECTATEURBR")) {
+      this.router.navigateByUrl('/inspecteur');
+    } else if (roles.includes("ROLE_CITOYEN")) {
+      this.router.navigateByUrl('/compte');
+    } else if (roles.includes("ROLE_CHEF_BUREAU")) {
+      this.router.navigateByUrl('/chef');
+    } else {
+      this.router.navigateByUrl("/home");
     }
   }
-}
+ 
+    logout() :void {
+      this.tokenStorage.signOut();
+    }
+  
+   
+
+
+  sendResetPasswordRequest(){}
+  updatePassword(){}
+  
+  }
+  
+
