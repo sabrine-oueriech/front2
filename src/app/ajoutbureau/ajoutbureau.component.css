@@ -2,6 +2,19 @@
     color: yellow; /* Couleur du texte en jaune */
     animation: changeColor 2s infinite alternate; /* Animation de changement de couleur */
 }
+/* src/app/components/create-bureau/create-bureau.component.css */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100px;
+}
 
 @keyframes changeColor {
     0% {

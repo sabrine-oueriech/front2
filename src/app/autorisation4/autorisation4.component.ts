@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DemandeService } from '../service/autorisation/demande.service';
 import { FormArray } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { DocumentUploadService } from '../service/document-upload.service';
 import {DemandeDto} from'../models/demande';
 import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from '../service/token-storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-autorisation4',
   templateUrl: './autorisation4.component.html',
@@ -14,7 +17,8 @@ import { ToastrService } from 'ngx-toastr';
 export class Autorisation4Component implements OnInit {
   rsForm !: FormGroup;
 
-  constructor( private documentUploadService: DocumentUploadService,private fb: FormBuilder, private autorisationService: DemandeService, private toastr: ToastrService) {}
+  constructor( private router:Router,
+    public tokenService : TokenStorageService, private documentUploadService: DocumentUploadService,private fb: FormBuilder, private autorisationService: DemandeService, private toastr: ToastrService, private datePipe: DatePipe,) {}
 
  
 
@@ -44,7 +48,7 @@ export class Autorisation4Component implements OnInit {
       poidsNet : ['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
       valeurDeviseEtrangere :['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
       valeurDT:['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
-       
+      motif: ['', Validators.required],
       
       cinUrl: ['', Validators.required],
       docPlaqueImmatriculation: [''],
@@ -61,13 +65,6 @@ export class Autorisation4Component implements OnInit {
  
   }
 
-   
- 
- 
-
-
-
-
   files: {[key: string]: File} = {};
 
   handleFileInput(files: FileList | null, key: string): void {
@@ -77,8 +74,34 @@ export class Autorisation4Component implements OnInit {
   }
   
     onSubmit(): void {
-      if (this.rsForm.valid) {
-        const demandeData: DemandeDto = new DemandeDto(this.rsForm.value); 
+      const formValues = this.rsForm.value;
+      const formattedExpirationDate = this.datePipe.transform(formValues.expirationAt, 'yyyy-MM-ddTHH:mm:ss');
+      
+      const formData = new DemandeDto({
+        typeDemande: formValues.typeDemande,
+        codeDemande: formValues.codeDemande,
+        expirationAt: formattedExpirationDate!,
+        brRattachement: formValues.brRattachement,
+        numchassis: formValues.numchassis,
+        numImmatriculation: formValues.numImmatriculation,
+        marque: formValues.marque,
+        complementMarque: formValues.complementMarque,
+        interdictionsEtRestrictions: formValues.interdictionsEtRestrictions,
+        info: formValues.info,
+        // guaranteeReferenceNumber: formValues.guaranteeReferenceNumber,
+        // montantGarantie: formValues.montantGarantie,
+        declartionPrecedente: formValues.declartionPrecedente,
+        motif: formValues.motif,
+        autorisation: "4",
+        motifArret: "ddp",
+        quantiteQCS: formValues.quantiteQCS,
+        poidsNet: formValues.poidsNet,
+        valeurDeviseEtrangere: formValues.valeurDeviseEtrangere,
+        valeurDT: formValues.valeurDT,
+        
+      });
+      console.log("formValues.numchassis",formValues.numchassis)
+        const demandeData: DemandeDto = new DemandeDto(formData); 
         this.autorisationService.sendFormData(demandeData).subscribe({
           next: (response: any) => {
             console.log('Success!', response);
@@ -88,14 +111,18 @@ export class Autorisation4Component implements OnInit {
             }
           },
           error: (error: any) => {
+            console.log(demandeData);
+            
+            if (error.status === 400) {
+              console.log(formData);
+              
+              this.toastr.error('Compléter le formulaire correctement');
+            } else {
+              this.toastr.error('Erreur lors de l’envoi des données',error.error.error);
+            }
             console.error('Erreur lors de l’envoi des données', error);
-            this.toastr.error('Échec de la soumission de la demande');
           }
-        });
-      } else {
-        this.toastr.error('Formulaire invalide, veuillez vérifier les champs.');
-      }
-    }
+    })}
     
     // onDocumentsUpload(id: number, documents: {[key: string]: File}) {
     //   this.documentUploadService.addPhotos(id, documents).subscribe({
@@ -175,6 +202,10 @@ getPlaceholder5(): string {
   } 
   getPlaceholder0(): string {
     return "Choisissez votre nationalité";
+  }
+  logout() :void {
+    this.tokenService.signOut();
+    this.router.navigateByUrl("/home");
   }
 }
 

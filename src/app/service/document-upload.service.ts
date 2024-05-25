@@ -30,4 +30,5 @@ export class DocumentUploadService {
 
     return this.http.post<string>(`${this.apiUrl}/uploadphoto/${id}?title=${title}`, formData, { headers });
   }
+  
 }

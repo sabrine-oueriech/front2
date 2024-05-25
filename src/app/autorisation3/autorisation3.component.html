@@ -9,8 +9,15 @@
             </div>
         </div>
         <div class="col-lg-4 text-center text-lg-end">
-            <a href="#" class="me-3 text-light" data-bs-toggle="modal" data-bs-target="#loginModal"><small><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
-            <a href="#" class="me-3 text-light" data-bs-toggle="modal" data-bs-target="#registerModal"><small><i class="fa fa-user me-2"></i>Register</small></a>
+
+          <a
+          class="dropdown-item"
+          href="#"
+          *ngIf="tokenService.isLoggedIn()"
+          (click)="logout()"
+          ><i class="bi bi-box-arrow-right"></i> Déconnexion</a
+        >
+        <a class="text-light" routerLink="/compte"><i class="fas fa-arrow-left me-1"></i>retour</a>
         </div>
     </div>
 </div>
@@ -53,7 +60,7 @@
     <div class="col">
       <label for="typeDemande" class="form-label">Type de demande</label>
       <select id="typeDemande" formControlName="typeDemande" class="form-select" title="Veuillez sélectionner le type de votre demande." [title]="getPlaceholder4()">
-          <option value="premiereD">Première demande</option>
+          <option value="premierD">Première demande</option>
           <option value="dRectification">Demande de rectification de l'autorisation</option>
           <option value="dRenouvellement">Demande de renouvellement d'autorisation</option>
           <option value="dArret">Demande d'arrêt de la décision</option>
@@ -105,7 +112,7 @@
 
 <div class="mb-3">
     <label for="expirationA" class="form-label">Date d'expiration de la décision</label>
-    <input id="expirationA" formControlName="expirationA" type="date" class="form-control" [title]="getPlaceholder5()">
+    <input id="expirationA" formControlName="expirationAt" type="date" class="form-control" [title]="getPlaceholder5()">
     <div *ngIf="rsForm.get('expirationA')?.errors?.['required'] && rsForm.get('expirationA')?.touched" class="text-danger">
         Ce champ est requis.
     </div>
@@ -287,14 +294,21 @@
     </div>
     </div>
     <div class="mb-3">
-      <label for=" interdictionsEtRestrictions" class="form-label"> Interdictions Et Restrictions</label>
-      <input id= "interdictionsEtRestrictions" formControlName="interdictionsEtRestrictions" type="text" class="form-control" [title]="getPlaceholder14()">
-      <div *ngIf="rsForm.get('interdictionsRestrictions')?.errors?.['required'] && rsForm.get('interdictionsRestrictions')?.touched" class="text-danger">
-          Ce champ est obligatoire.
-      </div>
-  </div>
+     
+      <label for="interdictionsEtRestrictions" class="form-label">Interdictions Et Restrictions</label>
+        <select id="interdictionsEtRestrictions" formControlName="interdictionsEtRestrictions" class="form-select" [title]="getPlaceholder13()">
+           
+            <option value="ica"> INCESSIBILITE CINQ ANS</option>
+            <option value="incI">INCESSIBILITE ILLIMITE</option>
+            <option value="pdt">PAIEMENT DROITS TAXESst</option>
+            <option value="vli">VEHICULE_LOUAGE_INCESSIBLE</option>
+           
+        </select>
+     
+    </div>
+
 <div class="border p-4 mb-3">
-    <div formGroupName="marchandises">
+    <div >
         <legend>Identification des marchandises :</legend>
         <div class="row">
             <div class="col">
@@ -318,9 +332,59 @@
         </div>
         </div>
         <div class="row">
-            <div class="col">
-                  <label for="marque">Marque :</label>
-                  <input type="text" id="marque" name="marque"formControlName="marque"  class="form-control" [title]="getPlaceholder14()">
+          <div class="col">
+            <label for="marque">Marque :</label>
+            <select id="marque" formControlName="marque"class="form-select" title="Veuillez sélectionner le  marque." [title]="getPlaceholder()">
+              <option value="TOYOTA">Toyota</option>
+              <option value="HONDA">Honda</option>
+              <option value="BMW">BMW</option>
+              <option value="MERCEDES_BENZ">Mercedes-Benz</option>
+              <option value="FORD">Ford</option>
+              <option value="VOLKSWAGEN">Volkswagen</option>
+              <option value="AUDI">Audi</option>
+              <option value="NISSAN">Nissan</option>
+              <option value="CHEVROLET">Chevrolet</option>
+              <option value="HYUNDAI">Hyundai</option>
+              <option value="KIA">Kia</option>
+              <option value="MAZDA">Mazda</option>
+              <option value="SUBARU">Subaru</option>
+              <option value="LEXUS">Lexus</option>
+              <option value="VOLVO">Volvo</option>
+              <option value="PEUGEOT">Peugeot</option>
+              <option value="RENAULT">Renault</option>
+              <option value="CITROEN">Citroen</option>
+              <option value="FIAT">Fiat</option>
+              <option value="JEEP">Jeep</option>
+              <option value="SUZUKI">Suzuki</option>
+              <option value="TESLA">Tesla</option>
+              <option value="MITSUBISHI">Mitsubishi</option>
+              <option value="LAND_ROVER">Land Rover</option>
+              <option value="JAGUAR">Jaguar</option>
+              <option value="PORSCHE">Porsche</option>
+              <option value="CADILLAC">Cadillac</option>
+              <option value="INFINITI">Infiniti</option>
+              <option value="Acura">Acura</option>
+              <option value="ALFA_ROMEO">Alfa Romeo</option>
+              <option value="BENTLEY">Bentley</option>
+              <option value="BUICK">Buick</option>
+              <option value="CHRYSLER">Chrysler</option>
+              <option value="DODGE">Dodge</option>
+              <option value="FERRARI">Ferrari</option>
+              <option value="GENESIS">Genesis</option>
+              <option value="GMC">GMC</option>
+              <option value="LAMBORGHINI">Lamborghini</option>
+              <option value="LINCOLN">Lincoln</option>
+              <option value="LOTUS">Lotus</option>
+              <option value="MASERATI">Maserati</option>
+              <option value="McLAREN">McLaren</option>
+              <option value="RAM">Ram</option>
+              <option value="ROLLS_ROYCE">Rolls Royce</option>
+              <option value="SMART">Smart</option>
+              <option value="TATA">Tata</option>
+              <option value="Vauxhall">Vauxhall</option>
+              <option value="Other">Other</option>
+          </select>
+          
                   <div *ngIf="rsForm.get('marque')?.errors?.['required'] && rsForm.get('marque')?.touched" class="text-danger">
                     Ce champ est requis.
                 </div>
@@ -771,7 +835,7 @@
   </div>
 <!-- Part of autorisation3.component.html -->
 <div class="mb-3 d-flex justify-content-between align-items-center mt-3">
-  <button class="btn btn-danger" [disabled]="!rsForm.valid">Soumettre</button>
+  <button class="btn btn-danger" [disabled]="rsForm.valid">Soumettre</button>
   <button type="reset" class="btn btn-secondary">Réinitialiser</button>
 </div>
 </form>

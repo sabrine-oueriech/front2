@@ -10,7 +10,8 @@ import { TokenStorageService } from '../token-storage.service';
 })
 export class DemandeService {
   
-  private apiUrl = 'http://localhost:8080/api/user/';  
+  private apiUrl = 'http://localhost:8080/api/user'; // Update to your actual API URL
+   
 
   constructor(private http: HttpClient,
     private  tokenStorageService :TokenStorageService
@@ -25,11 +26,14 @@ export class DemandeService {
 
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
+  getDemandeStatus(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/demStatus/${id}`);
+}
 
   sendFormData(demandeDtoRequest: DemandeDto): Observable<any> {
    
     const headers = this.getHeaders();
-    return this.http.post(`${this.apiUrl}dem`, demandeDtoRequest, { headers });
+    return this.http.post(`${this.apiUrl}/dem`, demandeDtoRequest, { headers });
    
   }
  
@@ -38,6 +42,13 @@ export class DemandeService {
     return this.http.post<any>(`${this.apiUrl}${id}/addphotos`, formData, { headers, responseType: 'text' as 'json' });
   }
   
+
+  getallForm():Observable<any>{
+    const headers = this.getHeaders();
+    return this.http.get(`${this.apiUrl}/dems`, { headers });
   }
-
-
+  updateDemande(id: string | null, updatedData: DemandeDto): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.patch<any>(`${this.apiUrl}/demupdate/${id}`, updatedData , { headers });
+  }
+  }

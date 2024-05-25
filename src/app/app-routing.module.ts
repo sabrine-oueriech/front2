@@ -26,7 +26,15 @@ import { Autorisation1Component } from './autorisation1/autorisation1.component'
 import { ReclamationComponent } from './reclamation/reclamation.component';
 import { RecComponent } from './rec/rec.component';
 import { TestComponent } from './test/test.component';
- 
+import { MyformComponent } from './myform/myform.component';
+import { UpdateForm1Component } from './update-form1/update-form1.component';
+import { UpdateForm2Component } from './update-form2/update-form2.component';
+import { UpdateForm3Component } from './update-form3/update-form3.component';
+import { UpdateForm4Component } from './update-form4/update-form4.component';
+import { AjoubureauxxComponent } from './ajoubureauxx/ajoubureauxx.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { DemandevalidComponent } from './demandevalid/demandevalid.component';
+
 
 
 const routes: Routes = [
@@ -46,14 +54,22 @@ const routes: Routes = [
   { path: 'afficheform', component: AfficheformComponent },
   { path: 'ajoutbureau', component: AjoutbureauComponent },
   { path: 'test', component: TestComponent },
+  { path: 'bureau', component: AjoubureauxxComponent },
   
 
   { path: 'chat', component: ChatComponent },
- 
-   { path: 'reclamation',component : ReclamationComponent},
+
+  { path: 'reclamation',component : ReclamationComponent},
   { path: 'user-list', component: UserListComponent },
   { path: 'detail/:id', component: DemandeComponent },
+  { path: 'detaille/:id', component: DemandevalidComponent },
   { path: 'rec', component: RecComponent },
+  { path: 'myform' , component: MyformComponent},
+  { path:'updateform1/:id' , component: UpdateForm1Component},
+  { path: 'updateform2/:id' , component: UpdateForm2Component},
+  { path: 'updateform3/:id', component:UpdateForm3Component},
+  { path: 'updateform4/:id', component:UpdateForm4Component},
+  { path: 'feedback', component:FeedbackComponent}
  
  
 ];

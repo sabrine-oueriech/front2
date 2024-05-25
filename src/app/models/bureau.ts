@@ -1,9 +1,8 @@
+import { ETache } from "./etache";
 
-export class Bureau {
-    id: number;
-    name: string;
-    taches: String[];  
-    //users: User[];
-      
-  }
-  
+export interface Bureau {
+  id: number;
+  name: string;
+  taches: Set<ETache>;
+  users: Set<any>; // Vous pouvez définir un modèle utilisateur approprié ici
+}

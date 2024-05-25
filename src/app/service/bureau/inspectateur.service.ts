@@ -5,6 +5,8 @@ import { Demandee } from '../../models/demandee';
 import { Bureau } from '../../models/bureau'; 
 import { TokenStorageService } from '../token-storage.service';
 import { DemandeVerify } from '../../models/demandeverify';
+import { User} from '../../models/user';
+
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +40,10 @@ export class InspectateurService {
     }
     
    
-// 
+    getProfile(): Observable<User> {
+      const headers = this.getHeaders();
+      return this.http.get<User>(`${this.baseUrl}/profile`,{ headers });
+    }
     
     updateDemande(id: number, demande: Demandee): Observable<Demandee> {
       const headers = this.getHeaders();

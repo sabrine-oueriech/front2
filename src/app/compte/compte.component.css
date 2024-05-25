@@ -5,6 +5,64 @@ body{margin-top:20px;
   .profile-widget {
     position: relative;
   }
+  .chat-container {
+    margin-top: 20px;
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .message {
+    margin-bottom: 15px;
+  }
+  
+  .message-body {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+  }
+  .chat-box {
+    width: 100%;
+    max-width: 500px;
+    background: #f4f4f4;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  }
+  
+  .chat-header {
+    background: #007bff;
+    color: white;
+    padding: 8px 15px;
+    font-size: 16px;
+  }
+  
+  .chat-content {
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+  }
+  
+  .chat-message {
+    padding: 8px 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .chat-message:hover {
+    background-color: #efefef;
+  }
+  
+  .response {
+    color: red;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+    
   .profile-widget .image-container {
     background-size: cover;
     background-position: center;
@@ -43,6 +101,70 @@ body{margin-top:20px;
   .mini-profile-widget .details {
     text-align: center;
   }
+  .chat-box {
+    max-width: 400px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-header .image {
+    margin-right: 10px;
+}
+
+.chat-header .image img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.chat-content {
+    background-color: #f9f9f9;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.chat-message {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.chat-message:hover {
+    background-color: #f0f0f0;
+}
+
+.response {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ffc107; /* Bootstrap warning color for the response */
+    color: #333;
+    border-radius: 4px;
+}
+.title h5 a {
+  color: black;         /* Set text color to black */
+  text-decoration: none; /* Removes underline from links */
+}
+
+.title h5 a:hover,
+.title h5 a:visited {
+  color: black;         /* Keeps text color black on hover and when visited */
+}
+
   
   body{margin-top:20px;
     background-color:#f2f6fc;

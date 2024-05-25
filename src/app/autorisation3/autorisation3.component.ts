@@ -4,6 +4,9 @@ import {DemandeService } from '../service/autorisation/demande.service';
 import { ToastrService } from 'ngx-toastr';
 import {DemandeDto} from'../models/demande';
 import { DocumentUploadService } from '../service/document-upload.service';
+import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { TokenStorageService } from '../service/token-storage.service';
 @Component({
   selector: 'app-autorisation3',
   templateUrl: './autorisation3.component.html',
@@ -12,40 +15,38 @@ import { DocumentUploadService } from '../service/document-upload.service';
 export class Autorisation3Component implements OnInit {
   rsForm!: FormGroup;
 
-  constructor( private fb: FormBuilder, private autorisationService: DemandeService, private toastr: ToastrService) {}
+  constructor(public tokenService : TokenStorageService,private router:Router, private fb: FormBuilder, private autorisationService: DemandeService, private toastr: ToastrService, private datePipe: DatePipe,) {}
 
   ngOnInit(): void {
     this.rsForm = this.fb.group({
       typeDemande: ['', Validators.required],
       codeDemande: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
-      expirationA:['', Validators.required],
-      
+      expirationAt: ['', Validators.required],
       brRattachement: ['', Validators.required],
       numchassis: ['', Validators.required],
-    
-    numImmatriculation :['', [Validators.required, Validators.pattern(new RegExp('XX-123-XX'))]],
-    marque: ['', Validators.required],
-    complementMarque : ['', Validators.required],
-    interdictionsEtRestrictions: ['', Validators.required],
-    info : [''],
-    guaranteeReferenceNumber :['', Validators.required],
-    montantGarantie: ['', Validators.required],
-    declartionPrecedente :  ['', Validators.required],
-    motif: ['', Validators.required],
-    motifArret: ['', Validators.required],  
-    quantiteQCS :['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
-    poidsNet : ['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
-    valeurDeviseEtrangere :['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
-    valeurDT:['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
-     
-    garantieImage: [null],
-    cinUrl: ['', Validators.required],
-    docPlaqueImmatriculation: [''],
-    docContratAssurance: [''],
-   carteGriseUrl: [''],
-    justPossessionUrl: [''],
-    docTaxeCirculationUrl: [''],
-    assuranceUrl: [''],}); }
+      numImmatriculation: ['', [Validators.required, Validators.pattern('XX-123-XX')]],
+      marque: ['', Validators.required],
+      complementMarque: ['', Validators.required],
+      interdictionsEtRestrictions: ['', Validators.required],
+      info: [''],
+      guaranteeReferenceNumber: ['', Validators.required],
+      montantGarantie: ['', Validators.required],
+      declartionPrecedente: ['', Validators.required],
+      motif: ['', Validators.required],
+      motifArret: ['', Validators.required],
+      quantiteQCS: ['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      poidsNet: ['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      valeurDeviseEtrangere: ['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      valeurDT: ['', [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      garantieImage: [null],
+      cinUrl: ['', Validators.required],
+      docPlaqueImmatriculation: [''],
+      docContratAssurance: [''],
+      carteGriseUrl: [''],
+      justPossessionUrl: [''],
+      docTaxeCirculationUrl: [''],
+      assuranceUrl: ['']
+    }); }
    
 
   files: {[key: string]: File} = {};
@@ -56,26 +57,64 @@ export class Autorisation3Component implements OnInit {
     }
   }
   
-    onSubmit(): void {
-      if (this.rsForm.valid) {
-        const demandeData: DemandeDto = new DemandeDto(this.rsForm.value); 
-        this.autorisationService.sendFormData(demandeData).subscribe({
-          next: (response: any) => {
-            console.log('Success!', response);
-            this.toastr.success('Demande soumise avec succès!');
-            if (Object.keys(this.files).length > 0) {
-              // this.onDocumentsUpload(response.demandeId, this.files);
-            }
-          },
-          error: (error: any) => {
-            console.error('Erreur lors de l’envoi des données', error);
-            this.toastr.error('Échec de la soumission de la demande');
+  onSubmit(): void {
+    const formValues = this.rsForm.value;
+    const formattedExpirationDate = this.datePipe.transform(formValues.expirationAt, 'yyyy-MM-ddTHH:mm:ss');
+    // if (!this.rsForm.valid) {
+      const formData = new DemandeDto({
+        typeDemande: formValues.typeDemande,
+        codeDemande: formValues.codeDemande,
+        expirationAt: formattedExpirationDate!,
+        brRattachement: formValues.brRattachement,
+        numchassis: formValues.numchassis,
+        numImmatriculation: formValues.numImmatriculation,
+        marque: formValues.marque,
+        complementMarque: formValues.complementMarque,
+        interdictionsEtRestrictions: formValues.interdictionsEtRestrictions,
+        info: formValues.info,
+        guaranteeReferenceNumber: formValues.guaranteeReferenceNumber,
+        montantGarantie: formValues.montantGarantie,
+        declartionPrecedente: formValues.declartionPrecedente,
+        motif: formValues.motif,
+        autorisation: "3",
+        motifArret: "ddp",
+        quantiteQCS: formValues.quantiteQCS,
+        poidsNet: formValues.poidsNet,
+        valeurDeviseEtrangere: formValues.valeurDeviseEtrangere,
+        valeurDT: formValues.valeurDT
+      });
+
+   console.log("formValues.numchassis ",formValues.numchassis);
+   console.log("this.rsForm.value",this.rsForm.value);
+   
+   
+
+     
+
+      this.autorisationService.sendFormData(formData).subscribe({
+        next: (response: any) => {
+          console.log('Success!', response);
+          this.toastr.success('Demande soumise avec succès!');
+          if (Object.keys(this.files).length > 0) {
+            // this.onDocumentsUpload(response.demandeId, this.files);
           }
-        });
-      } else {
-        this.toastr.error('Formulaire invalide, veuillez vérifier les champs.');
-      }
-    }
+        },
+        error: (error: any) => {
+          console.log(formData);
+          
+          if (error.status === 400) {
+            this.toastr.error('Compléter le formulaire correctement');
+          } else {
+            this.toastr.error('Erreur lors de l’envoi des données',error.error.error);
+          }
+          console.error('Erreur lors de l’envoi des données', error);
+        }
+      });
+    // } else {
+    //   this.toastr.error('Formulaire invalide, veuillez vérifier les champs.');
+    // }
+  }
+
     
     // onDocumentsUpload(id: number, documents: {[key: string]: File}) {
     //   this.documentUploadService.addPhotos(id, documents).subscribe({
@@ -180,5 +219,9 @@ export class Autorisation3Component implements OnInit {
 
   getPlaceholder21(): string {
     return "Choisissez votre nationalité";
+  }
+  logout() :void {
+    this.tokenService.signOut();
+    this.router.navigateByUrl("/home");
   }
 }

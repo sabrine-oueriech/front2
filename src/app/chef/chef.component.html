@@ -102,18 +102,19 @@
       <div class="carousel-item active">
         <div class="profile-desk">
           
-            <h1>Profil de l'Utilisateur</h1>
+            <h1>Profil</h1>
             <p><strong>Prénom:</strong> {{ user.firstname }}</p>
             <p><strong>Nom:</strong> {{ user.lastname }}</p>
            
             <p><strong>email:</strong> {{user.email }}</p>
+           <h1>Bienvenue Dans Votre Espace</h1> 
           
       </div>
       
       <div class="carousel-item">
         <div class="profile-desk">
           
-            <h1>Profil de l'Utilisateur</h1>
+            <h1>Profil</h1>
             <p><strong>Prénom:</strong> {{ user.firstname }}</p>
             <p><strong>Nom:</strong> {{ user.lastname }}</p>
            
@@ -144,7 +145,7 @@
       <table class="table manage-candidates-top mb-0">
         <thead>
           <tr>
-            <th>Nom de client </th>
+            <th>Nom du demandeur </th>
             <th class="text-center">Status</th>
             <th class="action text-right">Action</th>
           </tr>
@@ -174,7 +175,7 @@
             <td>
               <ul class="list-unstyled mb-0 d-flex justify-content-end">
                 <li *ngFor="let demande of demandes">
-                  <a  class="text-info" data-toggle="tooltip" title="View Details"  [routerLink]="['/detail',demande.id]">
+                  <a  class="text-info" data-toggle="tooltip" title="View Details"[routerLink]="['/detaille',demande.id]">
                     <i class="bi bi-eye"></i>
                   </a>
                   

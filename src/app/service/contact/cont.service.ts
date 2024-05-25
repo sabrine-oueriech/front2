@@ -9,12 +9,6 @@ import { ContactDto } from '../../models/contact-dto';
 export class ContService {
   private apiUrl =' http://localhost:8080/api/contact'; 
   constructor(private http: HttpClient) {}
-
- 
-    
- 
-    
-  
     sendMessage(contactDto: ContactDto):Observable<ContactDto> {
       return this.http.post<ContactDto>(`${this.apiUrl}/send`,contactDto);
     }

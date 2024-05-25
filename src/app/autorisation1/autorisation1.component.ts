@@ -114,9 +114,15 @@ export class Autorisation1Component implements OnInit {
           // });
 
         },
-        error: (error) => {
-          this.toastr.error('Error creating demande ...');
-          console.error('Error uploading photos:', error);
+        error: (error: any) => {
+          console.log(formData);
+          
+          if (error.status === 400) {
+            this.toastr.error('Compléter le formulaire correctement');
+          } else {
+            this.toastr.error('Erreur lors de l’envoi des données',error.error.error);
+          }
+          console.error('Erreur lors de l’envoi des données', error);
         }
       });
       

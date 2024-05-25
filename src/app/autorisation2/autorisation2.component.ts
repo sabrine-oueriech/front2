@@ -76,16 +76,14 @@ export class Autorisation2Component implements OnInit {
     console.log("FormData:", this.rsForm.value);
     
       
-
     const formData = this.rsForm.value;
-    const formattedDate = this.datePipe.transform(formData.expirationAt, 'yyyy-MM-ddTHH:mm:ss');
-    
-    
+    const formattedExpirationDate = this.datePipe.transform(formData.expirationAt, 'yyyy-MM-ddTHH:mm:ss');
+    const formattedEchianceDate = this.datePipe.transform(formData.echianceDate, 'yyyy-MM-ddTHH:mm:ss');
 
     const demandeData = new DemandeDto({
       typeDemande: formData.typeDemande,
       codeDemande: formData.codeDemande,
-      expirationAt: formattedDate!,
+      expirationAt: formattedExpirationDate!,
       brRattachement: formData.brRattachement,
       info: formData.info,
       paysOrigine: formData.paysOrigine,
@@ -102,12 +100,12 @@ export class Autorisation2Component implements OnInit {
       interdictionsEtRestrictions:formData.interdictionsEtRestrictions,
       guaranteeReferenceNumber: formData.guaranteeReferenceNumber,
       declartionPrecedente: formData.declartionPrecedente,
-      echianceDate: formData.echianceDate!
+      echianceDate: formattedEchianceDate!,
 
     });
       console.log("demande:", demandeData);
 
-
+      console.log("formValues.numchassis ",demandeData.numchassis);
       
       this.autorisationService.sendFormData(demandeData).subscribe({
         next: (response) => {
@@ -125,13 +123,21 @@ export class Autorisation2Component implements OnInit {
               console.log('Photos uploaded successfully:', uploadResponse);
             },
             error: (error) => {
+              console.log('filesFormData',filesFormData);
+              
               console.error('Error uploading photos:', error);
             }
           });
 
         },
         error: (error) => {
-          this.toastr.error('Error creating demande ...');
+          if (error.status === 400) {
+            this.toastr.error('Compléter le formulaire correctement');
+          } else {
+            const errorMessage = error.error?.detail || error.error?.message || error.message || 'Unknown error';
+            this.toastr.error('Error creating demande: ' +  error.error.error);
+          }
+          console.log('Error details:', error);
         }
       });
       

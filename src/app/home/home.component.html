@@ -11,20 +11,28 @@
         <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
             <div class="d-inline-flex align-items-center" style="height: 45px;">
                
-                    <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.facebook.com/douane.tunisie/"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://twitter.com/i/flow/login?redirect_after_login=%2FDouaneTunisie"><i class="fa fa-twitter"></i></a>
-                    <a class="btn btn-square btn-primary rounded-circle mx-1" href="https://www.youtube.com/channel/UCnaeFNIErTt_coPSykdnCWg/featured"><i class="fa fa-youtube"></i></a>
+                    <div class="d-inline-flex align-items-center" style="height: 45px;">
 
+                <a class="btn btn-square btn-secondary rounded-circle mx-1"
+                    href="https://www.facebook.com/douane.tunisie/"><i class="fa fa-facebook-f"></i></a>
+                <a class="btn btn-square btn-primary rounded-circle mx-1"
+                    href="https://twitter.com/i/flow/login?redirect_after_login=%2FDouaneTunisie"><i
+                        class="fa fa-twitter"></i></a>
+                <a class="btn btn-square btn-primary rounded-circle mx-1"
+                    href="https://www.youtube.com/channel/UCnaeFNIErTt_coPSykdnCWg/featured"><i
+                        class="fa fa-youtube"></i></a>
+
+            </div>
                 </div>
         </div>
         <div class="col-lg-4 text-center text-lg-end">
                  <div class="d-inline-flex align-items-center" style="height: 45px;">
                <!-- Lien Register modifié pour ouvrir la modale -->
-               <a class=" text-light  btn btn-primary"  *ngIf="(tokenStorage.isLoggedIn())" (click)="logout()"><small><i class="bi bi-box-arrow-right"></i>Logout</small></a>
+               <a class=" text-light  btn btn-primary"  *ngIf="(tokenStorage.isLoggedIn())" (click)="logout()"><small><i class="bi bi-box-arrow-right"></i>Déconnexion</small></a>
 
-                <a href="#"><small class="me-3 text-light"class="btn btn-primary" data-bs-toggle="modal" *ngIf="!(tokenStorage.isLoggedIn())" data-bs-target="#loginModal" ><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                <a href="#"><small class="me-3 text-light"class="btn btn-primary" data-bs-toggle="modal" *ngIf="!(tokenStorage.isLoggedIn())" data-bs-target="#loginModal" ><i class="fa fa-sign-in-alt me-2"></i>se connecter</small></a>
               
-               <a href="#" class="me-3 text-light btn btn-primary" data-bs-toggle="modal" *ngIf="!(tokenStorage.isLoggedIn())" data-bs-target="#registerModal" ><small><i class="fa fa-user me-2"></i>Register</small></a>
+               <a href="#" class="me-3 text-light btn btn-primary" data-bs-toggle="modal" *ngIf="!(tokenStorage.isLoggedIn())" data-bs-target="#registerModal" ><small><i class="fa fa-user me-2"></i>S'inscrire</small></a>
 
                
                 
@@ -99,7 +107,7 @@
                 <a class="nav-item nav-link" *ngIf="authService.isUserLoggedIn()"[routerLink]="['/contact']">Contact</a>
             </div>
         </div>
-        <a href="#" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Douane Tunisienne</a>
+        <a href="#" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Auto-Service</a>
         <img src="assets/img/drapo.png" alt="Drapeau Tunisien" width="50" height="60">
     </nav>
 </div>
@@ -119,38 +127,35 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
-                    <img src="assets/img/image.png" class="img-fluid" alt="Image" style="width: 100%; height: auto;">
+                    <img src="assets/img/home1.jpg" class="img-fluid" alt="Image" style="width:100%; height: auto;">
                     <div class="carousel-caption">
                         <div class="p-3" style="max-width: 900px;">
                            
-                            <h1 class="display-2 text-capitalize text-white mb-4">bienvenue</h1>
-                            <p class="mb-5 fs-5">     Numerisez votre parcours douanier,simplifiez votre vie -NSID  
-                            </p>
-
+                           
                             
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="assets/img/image.png" class="img-fluid" alt="Image" style="width: 100%; height: auto;">
+                    <img src="assets/img/home1.jpg" class="img-fluid" alt="Image" style="width: 100%; height: auto;">
                     <div class="carousel-caption">
                         <div class="p-3" style="max-width: 900px;">
-                           
+<!--                            
                             <h1 class="display-2 text-capitalize text-white mb-4">bienvenue</h1>
                             <p class="mb-5 fs-5">     Numerisez votre parcours douanier,simplifiez votre vie -NSID  
                             </p>
-                           
+                            -->
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="assets/img/image.png" class="img-fluid" alt="Image" style="width: 100%; height: auto;">
+                    <img src="assets/img/home2.jpg" class="img-fluid" alt="Image" style="width: 100%; height: auto;">
                     <div class="carousel-caption">
                         <div class="p-3" style="max-width: 900px;">
-                           
+<!--                            
                             <h1 class="display-2 text-capitalize text-white mb-4">bienvenue</h1>
                             <p class="mb-5 fs-5">     Numerisez votre parcours douanier,simplifiez votre vie -NSID  
-                            </p>
+                            </p> -->
                            
                         </div>
                 </div>
@@ -182,8 +187,8 @@
                 </div>
             </div>
             <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
-                <h5 class="section-about-title pe-3">About Us</h5>
-                <h1 class="mb-4">Welcome to <span class="text-primary">Service de Transaction Électronique</span></h1>
+                <h5 class="section-about-title pe-3">À propos de nous</h5>
+                <h1 class="mb-4">Bienvenue <span class="text-primary"></span></h1>
                 <p class="mb-4">Suite au communiqué du 30 décembre 2022 relatif à la mise en exploitation du service en ligne «Transaction électronique», la Direction Générale des Douanes informe le public que l’application est accessible en cliquant sur le présent communiqué.</p>
                 <p class="mb-4">Elle rappelle également à tous les usagers qu’ils peuvent désormais déposer et suivre leurs demandes de transaction par le biais dudit dispositif par eux-mêmes ou par l’intermédiaire de leur mandataire, qu’il soit avocat ou toute autre personne ayant obtenu une procuration légale. Accusantium quos voluptatem suscipit neque enim, doloribus ipsum rem eos distinctio, dignissimos nisi saepe nulla? Libero numquam perferendis provident placeat molestiae quia?</p>
                 
@@ -217,8 +222,8 @@
 
 <!-- Services Start -->
 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-    <h5 class="section-title px-3">Searvices</h5>
-    <h1 class="mb-0">Our Services</h1>
+    <h5 class="section-title px-3">Services</h5>
+    <h1 class="mb-0">Votre Services</h1>
 </div>
 <div class="row g-4">
     <div class="col-lg-6">
@@ -240,7 +245,7 @@
                 <div class="service-content-inner d-flex align-items-center  bg-white border border-primary rounded p-4 pe-0">
                     <div class="service-content text-end">
                         <h5 class="mb-4">Permis de circulation d'un véhicule immatriculé dans la serie minéralogique tunisienne "RS" (Permis bleu)</h5>
-                        <p class="mb-0">AUne autorisation légale est délivrée pour permettre la circulation d'un véhicule immatriculé avec la série minéralogique tunisienne "RS", communément désignée comme le "Permis bleu", garantissant ainsi sa conformité aux lois et sa légitimité sur les routes tunisiennes.
+                        <p class="mb-0">AUne autorisation légale est délivrée pour permettre la circulation d'un véhicule immatriculé avec la série minéralogique tunisienne "RS", communément désignée comme le "Permis bleu"
                         </p>
                     </div>
                     <div class="service-icon p-4">
@@ -263,7 +268,7 @@
                     
                     <div class="service-content">
                         <h5 class="mb-4">Autorisation pour la réexportation d'un véhicule bénéficiant du régime FCR</h5>
-                        <p class="mb-0">Autorisation officielle de réexportation accordée à un véhicule bénéficiant du régime FCR, permettant son transfert légal vers un autre pays conformément aux régulations douanières en vigueur.
+                        <p class="mb-0">Autorisation officielle de réexportation accordée à un véhicule bénéficiant du régime FCR.
                         </p>
                     </div>
                 </div>
@@ -305,9 +310,8 @@
 <div class="container-fluid gallery py-5 my-5">
     <div class="mx-auto text-center mb-5" style="max-width: 900px;">
         <h5 class="section-title px-3">Rapports</h5>
-        <h1 class="mb-4">Tourism & Traveling Gallery.</h1>
-        <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti eum cum repellat a laborum quasi.
-        </p>
+        <h1 class="mb-4">Douane tunisienne sur votre service.</h1>
+      
     </div>
  
         <div class="tab-content">
@@ -385,7 +389,7 @@
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
                         <div class="gallery-item h-100">
-                            <img src="assets/img/d9.png" class="img-fluid w-100 h-100 rounded" alt="Image">
+                            <img src="assets/img/home.png" class="img-fluid w-100 h-100 rounded" alt="Image">
                             <div class="gallery-content">
                                 <div class="gallery-info">
                                     <h5 class="text-white text-uppercase mb-2">World Tour</h5>
@@ -393,7 +397,7 @@
                                 </div>
                             </div>
                             <div class="gallery-plus-icon">
-                                <a href="assets/img/d9.png" data-lightbox="gallery-6" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                <a href="assets/img/home.png" data-lightbox="gallery-6" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
                             </div>
                         </div>
                     </div>
@@ -413,7 +417,7 @@
                     </div>
                     <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2">
                         <div class="gallery-item h-100">
-                            <img src="assets/img/d10.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                            <img src="assets/img/ds1.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
                             <div class="gallery-content">
                                 <div class="gallery-info">
                                     <h5 class="text-white text-uppercase mb-2">World Tour</h5>
@@ -435,7 +439,7 @@
                                 </div>
                             </div>
                             <div class="gallery-plus-icon">
-                                <a href="assets/img/a14.jpg" data-lightbox="gallery-9" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                <a href="assets/img/hhh.jpg" data-lightbox="gallery-9" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
                             </div>
                         </div>
                     </div>
