@@ -62,4 +62,5 @@ export class AdminComponent {
 ajoutbureau() {
   // Redirige vers la page "Home"
   this.router.navigate(['/ajoutbureau']);
-}}
+}
+}

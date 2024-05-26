@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
-import { RouterModule, Routes } from '@angular/router'; // Importation de RouterModule et Routes
+import { RouterModule, Routes } from '@angular/router'; 
 import { FormComponent } from './form/form.component';
 
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -82,7 +82,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AjoutbureauComponent,
     AdminComponent,
     ChatComponent,
- 
+    FeedbackComponent,
   
     NotFoundComponent,
     UserListComponent,
@@ -144,7 +144,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       } as SocialAuthServiceConfig,
     },
     provideAnimationsAsync(),
-    // ... vos autres providers ici
+   
     DatePipe 
   ],
   bootstrap: [AppComponent],

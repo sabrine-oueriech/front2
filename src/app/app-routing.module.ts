@@ -55,8 +55,7 @@ const routes: Routes = [
   { path: 'ajoutbureau', component: AjoutbureauComponent },
   { path: 'test', component: TestComponent },
   { path: 'bureau', component: AjoubureauxxComponent },
-  
-
+  { path: 'feedback', component:FeedbackComponent },
   { path: 'chat', component: ChatComponent },
 
   { path: 'reclamation',component : ReclamationComponent},
